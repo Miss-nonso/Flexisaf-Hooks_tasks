@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import NewsItem from "./NewsItem";
+const apiKey = process.env.REACT_APP_API_KEY;
 
 const App = () => {
   const [news, setNews] = useState([]);
@@ -25,7 +26,7 @@ const App = () => {
       setLoading(true);
       try {
         const response = await fetch(
-          `https://newsapi.org/v2/everything?q=bitcoin&apiKey=f7c263927f5146d487879682c1dda812&page=${page}&pageSize=10`
+          `https://newsapi.org/v2/everything?q=bitcoin&apiKey=${apiKey}&page=${page}&pageSize=10`
         );
         const data = await response.json();
         if (data.articles.length === 0) {
@@ -50,7 +51,7 @@ const App = () => {
         {news.map((article, index) => {
           if (news.length === index + 1) {
             return (
-              <div ref={lastNewsElementRef} key={article.url}>
+              <div ref={lastNewsElementRef} key={index + 1 + article.url}>
                 <NewsItem article={article} />
               </div>
             );
