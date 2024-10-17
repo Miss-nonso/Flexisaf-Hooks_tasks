@@ -1,70 +1,26 @@
-# Getting Started with Create React App
+### Project: Infinite Scrolling News App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a **React-based Infinite Scrolling News App** that fetches and displays news articles related to Bitcoin using the [News API](https://newsapi.org/). The app dynamically loads news as the user scrolls down, providing an infinite scrolling experience without the need for pagination buttons. The key features of the app include fetching data from a public API, displaying articles in a responsive and aesthetically pleasing layout, and implementing infinite scroll to load more articles seamlessly.
 
-## Available Scripts
+### Hooks Used in the Project
 
-In the project directory, you can run:
+1. **useState**:
+   - **State Management**: We used `useState` to manage the state of the fetched news articles, the current page number for pagination, loading status, and whether there are more articles to fetch.
+   - **Dynamic Updates**: The state was updated dynamically when new articles were fetched, and re-rendered the app to display the latest news on the page.
 
-### `npm start`
+2. **useEffect**:
+   - **API Call on Page Load and Scroll**: `useEffect` was utilized to handle side effects, such as fetching news articles when the component mounts and whenever the page number changes (triggered by scrolling).
+   - **Real-time Loading**: This allowed the app to make API requests to fetch new data automatically, ensuring fresh content as the user scrolled down the page.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+3. **useRef**:
+   - **Tracking Last Article**: `useRef` was used to observe the last news item on the page. With the help of the `IntersectionObserver` API, we tracked when the last article came into view and triggered the loading of additional articles by updating the state.
+   
+4. **Infinite Scrolling**:
+   - The combination of `useEffect`, `useRef`, and the IntersectionObserver helped create the infinite scrolling functionality, ensuring that more articles were fetched automatically as the user approached the bottom of the page.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Summary of Implementation:
+- The app starts by fetching a batch of news articles using `useEffect` and stores them in state via `useState`.
+- As the user scrolls down, `useRef` and `IntersectionObserver` detect when the last article comes into view, which triggers a state update to load the next page of articles.
+- The app re-renders with new articles while maintaining a smooth scrolling experience, with no interruptions or manual interaction required to load more content.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project showcases an understanding of core React hooks, efficient state management, and building a responsive and user-friendly application using external APIs.
